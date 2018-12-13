@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AmbitQuery-Node extension for KNIME Workbench
+Bundle-SymbolicName: net.idea.ambit.knime.query; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: ambitquery.jar
+Bundle-Activator: net.idea.ambit.knime.query.AmbitQueryNodePlugin
+Bundle-Vendor: Ideaconsult Ltd.
+Require-Bundle: org.eclipse.core.runtime,
+ org.knime.workbench.core,
+ org.knime.workbench.repository,
+ org.knime.base
+Bundle-ActivationPolicy: lazy
+Export-Package: net.idea.ambit.knime.query
+
