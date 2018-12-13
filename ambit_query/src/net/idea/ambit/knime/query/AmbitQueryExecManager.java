@@ -5,6 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.knime.core.data.DataCell;
+import org.knime.core.data.DataColumnSpec;
+import org.knime.core.data.DataColumnSpecCreator;
+import org.knime.core.data.DataRow;
+import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.RowKey;
+import org.knime.core.data.def.DefaultRow;
+import org.knime.core.data.def.DoubleCell;
+import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.StringCell;
+import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 
@@ -24,8 +35,22 @@ public class AmbitQueryExecManager
 	
 	public BufferedDataTable[] execute() throws Exception 
 	{
-		//TODO
-		return null;
+		//Setup table specification
+		DataColumnSpec[] allColSpecs = new DataColumnSpec[1];
+		allColSpecs[0] = 
+				new DataColumnSpecCreator("AmbitQueryURL", StringCell.TYPE).createSpec();		
+		DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
+		
+		//Calculate output table
+		BufferedDataContainer container = exec.createDataContainer(outputSpec);
+		RowKey key = new RowKey("Row 1");
+		DataCell[] cells = new DataCell[1];
+		cells[0] = new StringCell("https://apps.ideaconsult.net/data/");
+		DataRow row = new DefaultRow(key, cells);
+		container.addRowToTable(row);
+		container.close();
+        BufferedDataTable out = container.getTable();
+        return new BufferedDataTable[]{out};
 	}
 	
 	public String getWarningsAsString() {
