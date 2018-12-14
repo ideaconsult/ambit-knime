@@ -79,6 +79,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 		if (!execMan.warnings.isEmpty())
 			setWarningMessage(execMan.getWarningsAsString());
 		
+		if (!execMan.errors.isEmpty())
+			throw new Exception(execMan.getErrorsAsString());
+		
 		return result;
 	}
 
