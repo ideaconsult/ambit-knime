@@ -17,6 +17,7 @@ import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
@@ -42,6 +43,10 @@ public class AmbitQueryNodeModel extends NodeModel {
         store the settings (from the dialog or from a settings file)    
        (package visibility to be usable from the dialog). */
 	static final String CFGKEY_COUNT = "Count";
+	
+	static final String CFGKEY_STUDY_TYPE = "STUDY_TYPE";
+	static final String CFGKEY_QUERY_TYPE = "QUERY_TYPE";
+	static final String CFGKEY_CHEM_OBJECT_ID = "CHEM_OBJECT_ID";
 
 	/** initial default count value. */
 	static final int DEFAULT_COUNT = 100;
@@ -53,13 +58,20 @@ public class AmbitQueryNodeModel extends NodeModel {
 			new SettingsModelIntegerBounded(AmbitQueryNodeModel.CFGKEY_COUNT,
 					AmbitQueryNodeModel.DEFAULT_COUNT,
 					Integer.MIN_VALUE, Integer.MAX_VALUE);
+	
+	private final SettingsModelString m_studyType = 
+			new SettingsModelString(CFGKEY_STUDY_TYPE, "EC_ALGAETOX_SECTION");	
+    private final SettingsModelString m_queryType = 
+    		new SettingsModelString(CFGKEY_QUERY_TYPE, "bystructure_name");
+    private final SettingsModelString m_id = 
+    		new SettingsModelString(CFGKEY_CHEM_OBJECT_ID, "50-0-0");
 
 
 	/**
 	 * Constructor for the node model.
 	 */
-	protected AmbitQueryNodeModel() {
-
+	protected AmbitQueryNodeModel() 
+	{
 		// TODO one incoming port and one outgoing port is assumed
 		super(1, 1);
 	}
@@ -115,12 +127,14 @@ public class AmbitQueryNodeModel extends NodeModel {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void saveSettingsTo(final NodeSettingsWO settings) {
+	protected void saveSettingsTo(final NodeSettingsWO settings) 
+	{
+		m_studyType.saveSettingsTo(settings);
+		m_queryType.saveSettingsTo(settings);
+		m_id.saveSettingsTo(settings);
 
 		// TODO save user settings to the config object.
-
 		m_count.saveSettingsTo(settings);
-
 	}
 
 	/**
@@ -128,11 +142,11 @@ public class AmbitQueryNodeModel extends NodeModel {
 	 */
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-
-		// TODO load (valid) settings from the config object.
-		// It can be safely assumed that the settings are valided by the 
-		// method below.
+			throws InvalidSettingsException 
+	{
+		m_studyType.loadSettingsFrom(settings);
+		m_queryType.loadSettingsFrom(settings);
+		m_id.loadSettingsFrom(settings);
 
 		m_count.loadSettingsFrom(settings);
 
@@ -143,15 +157,13 @@ public class AmbitQueryNodeModel extends NodeModel {
 	 */
 	@Override
 	protected void validateSettings(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-
-		// TODO check if the settings could be applied to our model
-		// e.g. if the count is in a certain range (which is ensured by the
-		// SettingsModel).
-		// Do not actually set any values of any member variables.
+			throws InvalidSettingsException 
+	{
+		m_studyType.validateSettings(settings);
+		m_queryType.validateSettings(settings);
+		m_id.validateSettings(settings);
 
 		m_count.validateSettings(settings);
-
 	}
 
 	/**
