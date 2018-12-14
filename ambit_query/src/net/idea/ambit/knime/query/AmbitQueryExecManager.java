@@ -42,15 +42,28 @@ public class AmbitQueryExecManager
 		DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
 		
 		//Calculate output table
+		String query = generateQuery();
+		
 		BufferedDataContainer container = exec.createDataContainer(outputSpec);
 		RowKey key = new RowKey("Row 1");
 		DataCell[] cells = new DataCell[1];
-		cells[0] = new StringCell("https://apps.ideaconsult.net/data/");
+		cells[0] = new StringCell(query);
 		DataRow row = new DefaultRow(key, cells);
 		container.addRowToTable(row);
 		container.close();
         BufferedDataTable out = container.getTable();
         return new BufferedDataTable[]{out};
+	}
+	
+	String generateQuery()
+	{
+		String outputURL = 
+				"https://apps.ideaconsult.net/data/" 
+					+ "investigation?"
+					+ "search=" + variables.get(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE)
+					+ "type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE);
+		
+		return outputURL;
 	}
 	
 	public String getWarningsAsString() {

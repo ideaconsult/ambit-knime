@@ -66,10 +66,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception 
-	{
-		//TODO setup variables .. m_count.getIntValue()
-		
+	{			
 		AmbitQueryExecManager execMan = new AmbitQueryExecManager(inData, exec);
+		setModelVariables(execMan);
 		BufferedDataTable result[] = execMan.execute(); 
 		
 		if (!execMan.warnings.isEmpty())
@@ -79,6 +78,13 @@ public class AmbitQueryNodeModel extends NodeModel {
 			throw new Exception(execMan.getErrorsAsString());
 		
 		return result;
+	}
+	
+	public void setModelVariables(AmbitQueryExecManager execMan)
+	{
+		execMan.variables.put(m_studyType.getKey(), m_studyType.getStringValue());
+		execMan.variables.put(m_queryType.getKey(), m_queryType.getStringValue());
+		//TODO ids
 	}
 
 	/**

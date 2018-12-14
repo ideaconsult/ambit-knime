@@ -32,6 +32,8 @@ public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane
 	{
 		super();
 		
+		//TODO add ambit URL text area
+		
 		addDialogComponent(new DialogComponentStringSelection( 
 				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE, AmbitConst.study_types[0]),
 				"Study:", AmbitConst.study_types)); 
