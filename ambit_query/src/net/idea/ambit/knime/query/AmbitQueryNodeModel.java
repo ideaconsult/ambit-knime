@@ -39,26 +39,13 @@ public class AmbitQueryNodeModel extends NodeModel {
 	private static final NodeLogger logger = NodeLogger
 			.getLogger(AmbitQueryNodeModel.class);
 
-	/** the settings key which is used to retrieve and 
-        store the settings (from the dialog or from a settings file)    
-       (package visibility to be usable from the dialog). */
-	static final String CFGKEY_COUNT = "Count";
-	
+	//the settings keys which is used to retrieve and 
+	//store the settings (from the dialog or from a settings file)
 	static final String CFGKEY_STUDY_TYPE = "STUDY_TYPE";
 	static final String CFGKEY_QUERY_TYPE = "QUERY_TYPE";
 	static final String CFGKEY_CHEM_OBJECT_ID = "CHEM_OBJECT_ID";
-
-	/** initial default count value. */
-	static final int DEFAULT_COUNT = 100;
-
-	// example value: the models count variable filled from the dialog 
-	// and used in the models execution method. The default components of the
-	// dialog work with "SettingsModels".
-	private final SettingsModelIntegerBounded m_count =
-			new SettingsModelIntegerBounded(AmbitQueryNodeModel.CFGKEY_COUNT,
-					AmbitQueryNodeModel.DEFAULT_COUNT,
-					Integer.MIN_VALUE, Integer.MAX_VALUE);
 	
+	//Model settings handling
 	private final SettingsModelString m_studyType = 
 			new SettingsModelString(CFGKEY_STUDY_TYPE, "EC_ALGAETOX_SECTION");	
     private final SettingsModelString m_queryType = 
@@ -66,10 +53,7 @@ public class AmbitQueryNodeModel extends NodeModel {
     private final SettingsModelString m_id = 
     		new SettingsModelString(CFGKEY_CHEM_OBJECT_ID, "50-0-0");
 
-
-	/**
-	 * Constructor for the node model.
-	 */
+    
 	protected AmbitQueryNodeModel() 
 	{
 		// TODO one incoming port and one outgoing port is assumed
@@ -131,10 +115,7 @@ public class AmbitQueryNodeModel extends NodeModel {
 	{
 		m_studyType.saveSettingsTo(settings);
 		m_queryType.saveSettingsTo(settings);
-		m_id.saveSettingsTo(settings);
-
-		// TODO save user settings to the config object.
-		m_count.saveSettingsTo(settings);
+		m_id.saveSettingsTo(settings);		
 	}
 
 	/**
@@ -147,9 +128,6 @@ public class AmbitQueryNodeModel extends NodeModel {
 		m_studyType.loadSettingsFrom(settings);
 		m_queryType.loadSettingsFrom(settings);
 		m_id.loadSettingsFrom(settings);
-
-		m_count.loadSettingsFrom(settings);
-
 	}
 
 	/**
@@ -162,8 +140,6 @@ public class AmbitQueryNodeModel extends NodeModel {
 		m_studyType.validateSettings(settings);
 		m_queryType.validateSettings(settings);
 		m_id.validateSettings(settings);
-
-		m_count.validateSettings(settings);
 	}
 
 	/**

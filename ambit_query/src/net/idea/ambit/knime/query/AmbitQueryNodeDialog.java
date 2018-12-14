@@ -1,8 +1,11 @@
 package net.idea.ambit.knime.query;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
+import org.knime.core.node.defaultnodesettings.DialogComponentMultiLineString;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
+import org.knime.core.node.defaultnodesettings.DialogComponentStringSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 /**
  * <code>NodeDialog</code> for the "AmbitQuery" Node.
@@ -15,23 +18,32 @@ import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
  * 
  * @author Ideaconsult Ltd.
  */
-public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane {
+public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane 
+{
 
 	/**
 	 * New pane for configuring AmbitQuery node dialog.
 	 * This is just a suggestion to demonstrate possible default dialog
 	 * components.
 	 */
-	protected AmbitQueryNodeDialog() {
+	
+	
+	protected AmbitQueryNodeDialog() 
+	{
 		super();
-
-		addDialogComponent(new DialogComponentNumber(
-				new SettingsModelIntegerBounded(
-						AmbitQueryNodeModel.CFGKEY_COUNT,
-						AmbitQueryNodeModel.DEFAULT_COUNT,
-						Integer.MIN_VALUE, Integer.MAX_VALUE),
-				"Counter:", /*step*/ 1, /*componentwidth*/ 5));
-
+		
+		addDialogComponent(new DialogComponentStringSelection( 
+				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE, AmbitConst.study_types[0]),
+				"Study:", AmbitConst.study_types)); 
+				
+		addDialogComponent(new DialogComponentStringSelection(
+				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE, AmbitConst.query_types[0]),
+				"Search type:", AmbitConst.query_types));
+		
+		addDialogComponent(new DialogComponentMultiLineString(new SettingsModelString(
+				AmbitQueryNodeModel.CFGKEY_CHEM_OBJECT_ID, "50-00-0"), "ChemObject IDs:"));
+		
+		closeCurrentGroup();
 	}
 }
 
