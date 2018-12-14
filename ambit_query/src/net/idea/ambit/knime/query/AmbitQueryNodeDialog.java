@@ -2,10 +2,9 @@ package net.idea.ambit.knime.query;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentMultiLineString;
-import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
 import org.knime.core.node.defaultnodesettings.DialogComponentStringSelection;
-import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
 
 /**
  * <code>NodeDialog</code> for the "AmbitQuery" Node.
@@ -20,13 +19,6 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
  */
 public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane 
 {
-
-	/**
-	 * New pane for configuring AmbitQuery node dialog.
-	 * This is just a suggestion to demonstrate possible default dialog
-	 * components.
-	 */
-	
 	
 	protected AmbitQueryNodeDialog() 
 	{

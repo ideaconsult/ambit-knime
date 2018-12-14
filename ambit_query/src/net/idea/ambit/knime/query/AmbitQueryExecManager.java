@@ -12,8 +12,6 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
-import org.knime.core.data.def.DoubleCell;
-import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
@@ -57,13 +55,24 @@ public class AmbitQueryExecManager
 	
 	String generateQuery()
 	{
-		String outputURL = 
-				"https://apps.ideaconsult.net/data/" 
-					+ "investigation?"
-					+ "search=" + variables.get(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE)
-					+ "type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE);
+		StringBuffer sb = new StringBuffer();
+		sb.append("https://apps.ideaconsult.net/data/");
+		sb.append("investigation?");
+		sb.append("search=" + variables.get(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE));
+		sb.append("type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE));
 		
-		return outputURL;
+		//Add multiple ids
+		String idsMultiLine = (String)variables.get(AmbitQueryNodeModel.CFGKEY_CHEM_OBJECT_ID);
+		String ids[] = idsMultiLine.split("[\\r\\n]+");
+		for (int i = 0; i < ids.length; i++)
+		{
+			String id = ids[i].trim();
+			if (id.isEmpty())
+				continue;
+			sb.append("&id=" + id);
+		}
+		
+		return sb.toString();
 	}
 	
 	public String getWarningsAsString() {
