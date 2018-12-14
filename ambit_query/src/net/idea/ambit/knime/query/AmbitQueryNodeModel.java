@@ -31,22 +31,25 @@ public class AmbitQueryNodeModel extends NodeModel {
 
 	//the settings keys which is used to retrieve and 
 	//store the settings (from the dialog or from a settings file)
+	static final String CFGKEY_AMBIT_DB_URL = "AMBIT_DB_URL";
 	static final String CFGKEY_STUDY_TYPE = "STUDY_TYPE";
 	static final String CFGKEY_QUERY_TYPE = "QUERY_TYPE";
 	static final String CFGKEY_CHEM_OBJECT_ID = "CHEM_OBJECT_ID";
 	
 	//Model settings handling
+	private final SettingsModelString m_ambitDbUrl = 
+			new SettingsModelString(CFGKEY_AMBIT_DB_URL, AmbitConst.default_ambit_db_url);
 	private final SettingsModelString m_studyType = 
-			new SettingsModelString(CFGKEY_STUDY_TYPE, "EC_ALGAETOX_SECTION");	
+			new SettingsModelString(CFGKEY_STUDY_TYPE, AmbitConst.study_types[0]);	
     private final SettingsModelString m_queryType = 
-    		new SettingsModelString(CFGKEY_QUERY_TYPE, "bystructure_name");
+    		new SettingsModelString(CFGKEY_QUERY_TYPE, AmbitConst.query_types[0]);
     private final SettingsModelString m_id = 
     		new SettingsModelString(CFGKEY_CHEM_OBJECT_ID, "50-0-0");
 
     
 	protected AmbitQueryNodeModel() 
 	{
-		// TODO one incoming port and one outgoing port is assumed
+		//One incoming port and one outgoing port
 		super(1, 1);
 	}
 
@@ -72,6 +75,7 @@ public class AmbitQueryNodeModel extends NodeModel {
 	
 	public void setModelVariables(AmbitQueryExecManager execMan)
 	{
+		execMan.variables.put(m_ambitDbUrl.getKey(), m_ambitDbUrl.getStringValue());
 		execMan.variables.put(m_studyType.getKey(), m_studyType.getStringValue());
 		execMan.variables.put(m_queryType.getKey(), m_queryType.getStringValue());
 		execMan.variables.put(m_id.getKey(), m_id.getStringValue());
@@ -109,6 +113,7 @@ public class AmbitQueryNodeModel extends NodeModel {
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) 
 	{
+		m_ambitDbUrl.saveSettingsTo(settings);
 		m_studyType.saveSettingsTo(settings);
 		m_queryType.saveSettingsTo(settings);
 		m_id.saveSettingsTo(settings);		
@@ -121,6 +126,7 @@ public class AmbitQueryNodeModel extends NodeModel {
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings)
 			throws InvalidSettingsException 
 	{
+		m_ambitDbUrl.loadSettingsFrom(settings);
 		m_studyType.loadSettingsFrom(settings);
 		m_queryType.loadSettingsFrom(settings);
 		m_id.loadSettingsFrom(settings);
@@ -133,6 +139,7 @@ public class AmbitQueryNodeModel extends NodeModel {
 	protected void validateSettings(final NodeSettingsRO settings)
 			throws InvalidSettingsException 
 	{
+		m_ambitDbUrl.validateSettings(settings);
 		m_studyType.validateSettings(settings);
 		m_queryType.validateSettings(settings);
 		m_id.validateSettings(settings);

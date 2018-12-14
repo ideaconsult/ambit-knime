@@ -56,12 +56,18 @@ public class AmbitQueryExecManager
 	String generateQuery()
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("https://apps.ideaconsult.net/data/");
+		//DB url
+		String dbUrl = ((String)variables.get(AmbitQueryNodeModel.CFGKEY_AMBIT_DB_URL)).trim();
+		sb.append(dbUrl);
+		if (!dbUrl.endsWith("/"))
+			sb.append("/");
+		
+		//Investigation, search and query type
 		sb.append("investigation?");
 		sb.append("search=" + variables.get(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE));
-		sb.append("type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE));
+		sb.append("&type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE));
 		
-		//Add multiple ids
+		//Chem objects ids
 		String idsMultiLine = (String)variables.get(AmbitQueryNodeModel.CFGKEY_CHEM_OBJECT_ID);
 		String ids[] = idsMultiLine.split("[\\r\\n]+");
 		for (int i = 0; i < ids.length; i++)

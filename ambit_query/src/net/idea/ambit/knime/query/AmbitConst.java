@@ -15,6 +15,7 @@ public class AmbitConst
 				"EC_CHRONDAPHNIATOX_SECTION"
 		};
 	
-	
+	public static final String default_ambit_db_url 
+				= "https://apps.ideaconsult.net/data/";
 	
 }
