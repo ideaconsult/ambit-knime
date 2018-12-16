@@ -17,21 +17,21 @@ import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
  */
 public class AmbitJsonParserNodeDialog extends DefaultNodeSettingsPane {
 
-    /**
-     * New pane for configuring AmbitJsonParser node dialog.
-     * This is just a suggestion to demonstrate possible default dialog
-     * components.
-     */
-    protected AmbitJsonParserNodeDialog() {
-        super();
-        
-        addDialogComponent(new DialogComponentNumber(
-                new SettingsModelIntegerBounded(
-                    AmbitJsonParserNodeModel.CFGKEY_COUNT,
-                    AmbitJsonParserNodeModel.DEFAULT_COUNT,
-                    Integer.MIN_VALUE, Integer.MAX_VALUE),
-                    "Counter:", /*step*/ 1, /*componentwidth*/ 5));
-                    
-    }
+	/**
+	 * New pane for configuring AmbitJsonParser node dialog.
+	 * This is just a suggestion to demonstrate possible default dialog
+	 * components.
+	 */
+	protected AmbitJsonParserNodeDialog() {
+		super();
+
+		addDialogComponent(new DialogComponentNumber(
+				new SettingsModelIntegerBounded(
+						AmbitJsonParserNodeModel.CFGKEY_COUNT,
+						AmbitJsonParserNodeModel.DEFAULT_COUNT,
+						Integer.MIN_VALUE, Integer.MAX_VALUE),
+				"Counter:", /*step*/ 1, /*componentwidth*/ 5));
+
+	}
 }
 

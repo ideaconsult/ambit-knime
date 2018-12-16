@@ -10,49 +10,48 @@ import org.knime.core.node.NodeView;
  *
  * @author Ideaconsult Ltd.
  */
-public class AmbitJsonParserNodeFactory 
-        extends NodeFactory<AmbitJsonParserNodeModel> {
+public class AmbitJsonParserNodeFactory extends NodeFactory<AmbitJsonParserNodeModel> {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AmbitJsonParserNodeModel createNodeModel() {
-        return new AmbitJsonParserNodeModel();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AmbitJsonParserNodeModel createNodeModel() {
+		return new AmbitJsonParserNodeModel();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNrNodeViews() {
-        return 1;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getNrNodeViews() {
+		return 1;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeView<AmbitJsonParserNodeModel> createNodeView(final int viewIndex,
-            final AmbitJsonParserNodeModel nodeModel) {
-        return new AmbitJsonParserNodeView(nodeModel);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public NodeView<AmbitJsonParserNodeModel> createNodeView(final int viewIndex,
+			final AmbitJsonParserNodeModel nodeModel) {
+		return new AmbitJsonParserNodeView(nodeModel);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean hasDialog() {
-        return true;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean hasDialog() {
+		return true;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeDialogPane createNodeDialogPane() {
-        return new AmbitJsonParserNodeDialog();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public NodeDialogPane createNodeDialogPane() {
+		return new AmbitJsonParserNodeDialog();
+	}
 
 }
 
