@@ -26,14 +26,23 @@ public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane
 	{
 		super();
 		
+		createNewGroup("Ambit");
+		
 		addDialogComponent(new DialogComponentString(
 				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_AMBIT_DB_URL, AmbitConst.default_ambit_db_url), 
 				"Ambit database url:"));
+		closeCurrentGroup();
+		
+		createNewGroup("Study");
 		
 		addDialogComponent(new DialogComponentStringSelection( 
 				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE, AmbitConst.study_types[0]),
-				"Study:", AmbitConst.study_types)); 
-				
+				"Study type:", AmbitConst.study_types)); 
+		
+		closeCurrentGroup();
+		
+		createNewGroup("Search");
+		
 		addDialogComponent(new DialogComponentStringSelection(
 				new SettingsModelString(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE, AmbitConst.query_types[0]),
 				"Search type:", AmbitConst.query_types));

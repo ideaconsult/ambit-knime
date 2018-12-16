@@ -49,8 +49,8 @@ public class AmbitQueryNodeModel extends NodeModel {
     
 	protected AmbitQueryNodeModel() 
 	{
-		//One incoming port and one outgoing port
-		super(1, 1);
+		//No incoming port and one outgoing port
+		super(0, 1);
 	}
 
 	/**
