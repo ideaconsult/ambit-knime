@@ -32,15 +32,17 @@ public class AmbitQueryNodeModel extends NodeModel {
 	//the settings keys which is used to retrieve and 
 	//store the settings (from the dialog or from a settings file)
 	static final String CFGKEY_AMBIT_DB_URL = "AMBIT_DB_URL";
+	static final String CFGKEY_STUDY_CATEGORY = "STUDY_CATEGORY";
 	static final String CFGKEY_STUDY_TYPE = "STUDY_TYPE";
 	static final String CFGKEY_QUERY_TYPE = "QUERY_TYPE";
 	static final String CFGKEY_CHEM_OBJECT_ID = "CHEM_OBJECT_ID";
+	
 	
 	//Model settings handling
 	private final SettingsModelString m_ambitDbUrl = 
 			new SettingsModelString(CFGKEY_AMBIT_DB_URL, AmbitConst.default_ambit_db_url);
 	private final SettingsModelString m_studyType = 
-			new SettingsModelString(CFGKEY_STUDY_TYPE, AmbitConst.study_types[0]);	
+			new SettingsModelString(CFGKEY_STUDY_TYPE, AmbitConst.default_study_types_value);	
     private final SettingsModelString m_queryType = 
     		new SettingsModelString(CFGKEY_QUERY_TYPE, AmbitConst.query_types[0]);
     private final SettingsModelString m_id = 
