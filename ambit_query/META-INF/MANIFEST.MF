@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: AmbitQuery-Node extension for KNIME Workbench
 Bundle-SymbolicName: net.idea.ambit.knime.query; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 Bundle-ClassPath: ambitquery.jar
 Bundle-Activator: net.idea.ambit.knime.query.AmbitQueryNodePlugin
 Bundle-Vendor: Ideaconsult Ltd.
