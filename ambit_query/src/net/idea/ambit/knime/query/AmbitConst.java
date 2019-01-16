@@ -5,7 +5,8 @@ public class AmbitConst
 	public static final String query_types[] = 
 		{
 				"bystructure_name",
-				"bystructure_inchikey"
+				"bystructure_inchikey",
+				"bystudytype"
 		};
 	public static final String study_categoty[] = 
 		{

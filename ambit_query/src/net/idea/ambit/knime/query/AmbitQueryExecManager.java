@@ -65,17 +65,21 @@ public class AmbitQueryExecManager
 		//Investigation, search and query type
 		sb.append("investigation?");
 		sb.append("search=" + variables.get(AmbitQueryNodeModel.CFGKEY_STUDY_TYPE));
-		sb.append("&type=" + variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE));
+		String type = variables.get(AmbitQueryNodeModel.CFGKEY_QUERY_TYPE).toString();
+		sb.append("&type=" + type);
 		
-		//Chem objects ids
-		String idsMultiLine = (String)variables.get(AmbitQueryNodeModel.CFGKEY_CHEM_OBJECT_ID);
-		String ids[] = idsMultiLine.split("[\\r\\n]+");
-		for (int i = 0; i < ids.length; i++)
+		if (!type.equals("bystudytype")) 
 		{
-			String id = ids[i].trim();
-			if (id.isEmpty())
-				continue;
-			sb.append("&id=" + id);
+			//Chem objects ids
+			String idsMultiLine = (String)variables.get(AmbitQueryNodeModel.CFGKEY_CHEM_OBJECT_ID);
+			String ids[] = idsMultiLine.split("[\\r\\n]+");
+			for (int i = 0; i < ids.length; i++)
+			{
+				String id = ids[i].trim();
+				if (id.isEmpty())
+					continue;
+				sb.append("&id=" + id);
+			}
 		}
 		
 		return sb.toString();

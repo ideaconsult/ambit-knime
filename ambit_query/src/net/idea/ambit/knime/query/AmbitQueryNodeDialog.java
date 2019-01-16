@@ -40,8 +40,7 @@ public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane
 
 		studyGroupSettingsModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(final ChangeEvent e) {
-
-				for(int i = 0; i<AmbitConst.study_categoty.length;i++) {
+				
 					if(studyGroupSettingsModel.getStringValue()=="Ecotox") {
 						studyTypeDialogComponent.replaceListItems(new ArrayList<String>(Arrays.asList(AmbitConst.ecotox_study_types)),AmbitConst.ecotox_study_types[0]);
 					}
@@ -55,7 +54,7 @@ public class AmbitQueryNodeDialog extends DefaultNodeSettingsPane
 						studyTypeDialogComponent.replaceListItems(new ArrayList<String>(Arrays.asList(AmbitConst.environmental_fate_study_types)),AmbitConst.environmental_fate_study_types[0]);
 					}
 				}
-			}  
+			
 		}); 
 
 
