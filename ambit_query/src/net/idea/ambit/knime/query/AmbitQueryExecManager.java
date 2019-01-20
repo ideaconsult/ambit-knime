@@ -81,6 +81,11 @@ public class AmbitQueryExecManager
 				sb.append("&id=" + id);
 			}
 		}
+		String page = variables.get(AmbitQueryNodeModel.PAGE).toString();
+		sb.append("&page=" + page);
+		
+		String pageSize = variables.get(AmbitQueryNodeModel.PAGE_SIZE).toString();
+		sb.append("&pagesize=" + pageSize);
 		
 		return sb.toString();
 	}

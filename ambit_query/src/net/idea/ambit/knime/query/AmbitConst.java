@@ -2,6 +2,8 @@ package net.idea.ambit.knime.query;
 
 public class AmbitConst 
 {
+	public static final String page = "0";
+	public static final String page_size = "10";
 	public static final String query_types[] = 
 		{
 				"bystructure_name",

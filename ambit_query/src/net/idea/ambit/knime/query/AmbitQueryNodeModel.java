@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
@@ -36,7 +37,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 	static final String CFGKEY_STUDY_TYPE = "STUDY_TYPE";
 	static final String CFGKEY_QUERY_TYPE = "QUERY_TYPE";
 	static final String CFGKEY_CHEM_OBJECT_ID = "CHEM_OBJECT_ID";
-	
+	static final String PAGE = "PAGE";
+	static final String PAGE_SIZE = "PAGE_SIZE";
+	static final String PAGING_ENABLED = "PAGING_ENABLED";
 	
 	//Model settings handling
 	private final SettingsModelString m_ambitDbUrl = 
@@ -47,7 +50,12 @@ public class AmbitQueryNodeModel extends NodeModel {
     		new SettingsModelString(CFGKEY_QUERY_TYPE, AmbitConst.query_types[0]);
     private final SettingsModelString m_id = 
     		new SettingsModelString(CFGKEY_CHEM_OBJECT_ID, "50-0-0");
-
+    private final SettingsModelString m_page = 
+    		new SettingsModelString(PAGE, "0");
+    private final SettingsModelString m_pageSize = 
+    		new SettingsModelString(PAGE_SIZE, "10");
+    private final SettingsModelBoolean m_pagingEnabled = 
+    		new SettingsModelBoolean(PAGING_ENABLED, true);
     
 	protected AmbitQueryNodeModel() 
 	{
@@ -81,6 +89,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 		execMan.variables.put(m_studyType.getKey(), m_studyType.getStringValue());
 		execMan.variables.put(m_queryType.getKey(), m_queryType.getStringValue());
 		execMan.variables.put(m_id.getKey(), m_id.getStringValue());
+		execMan.variables.put(m_page.getKey(), m_page.getStringValue());
+		execMan.variables.put(m_pageSize.getKey(), m_pageSize.getStringValue());
+
 	}
 
 	/**
@@ -119,6 +130,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 		m_studyType.saveSettingsTo(settings);
 		m_queryType.saveSettingsTo(settings);
 		m_id.saveSettingsTo(settings);		
+		m_page.saveSettingsTo(settings);
+		m_pageSize.saveSettingsTo(settings);
+		m_pagingEnabled.saveSettingsTo(settings);
 	}
 
 	/**
@@ -132,6 +146,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 		m_studyType.loadSettingsFrom(settings);
 		m_queryType.loadSettingsFrom(settings);
 		m_id.loadSettingsFrom(settings);
+		m_page.loadSettingsFrom(settings);
+		m_pageSize.loadSettingsFrom(settings);
+		m_pagingEnabled.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -145,6 +162,9 @@ public class AmbitQueryNodeModel extends NodeModel {
 		m_studyType.validateSettings(settings);
 		m_queryType.validateSettings(settings);
 		m_id.validateSettings(settings);
+		m_page.validateSettings(settings);
+		m_pageSize.validateSettings(settings);
+		m_pagingEnabled.validateSettings(settings);
 	}
 
 	/**
