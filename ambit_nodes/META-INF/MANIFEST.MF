@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ambit_nodes
+Bundle-SymbolicName: ambit_nodes;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: ambitconnectionsetting.jar
+Bundle-Activator: net.idea.ambit.knime.rest.connectionsetting.AmbitConnectionSettingNodePlugin
+Export-Package: net.idea.ambit.knime.rest.connectionsetting,
+ net.idea.ambit.knime.rest.connectionsettingrequest
+Require-Bundle: org.eclipse.core.runtime,
+  org.knime.workbench.core,
+  org.knime.workbench.repository,
+  org.knime.base
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: ambit_nodes;singleton:=true
